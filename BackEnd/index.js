@@ -1,10 +1,57 @@
-require('dotenv').config();
 const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 3000;
 
-app.get('/', async (req,res)=> res.send('Hola Mundo'));
+// Rutas
+const comentario_router = require('./routes/ComentarioFURoutes');
+const comentarioFU_router = require('./routes/ComentarioRoutes');
+const followUP_router = require('./routes/FollowUpRoutes');
+const formatoAdopcion_router = require('./routes/FormatoAdopcionRoutes');
+const imagen_router = require('./routes/ImagenRoutes');
+const likeFU_router = require('./routes/LikeFURoutes');
+const like_router = require('./routes/LikeRoutes');
+const post_router = require('./routes/PostRoutes');
+const usuario_router = require('./routes/userRoutes');
+const watchlist_router = require('./routes/WatchListRoutes');
 
-app.listen(port,() => console.log('Mi puerto',port));
+
+app.use(bodyParser.json());
+
+// Uso de rutas
+app.use('/api', comentario_router);
+app.use('/api', comentarioFU_router);
+app.use('/api', followUP_router);
+app.use('/api', formatoAdopcion_router);
+app.use('/api', imagen_router);
+app.use('/api', likeFU_router);
+app.use('/api', like_router);
+app.use('/api', post_router);
+app.use('/api', usuario_router);
+app.use('/api', watchlist_router);
+
+app.listen(port, () => {
+    console.log("La aplicación está escuchando al puerto " + port);
+});
+
+//app.get('/', async (req,res)=> {
+//    const{query}=req;
+//    console.log(query.param2);
+//
+//    res.send({message:'Hola Mundo'})
+//
+//});
+//
+//app.post('/',async(req,res)=>{
+//    const {query,body} = req;
+//    
+//    console.log("params",query);
+//    console.log("body",body);
+//    res.send({message:'Adios Mundo'})
+//});
+//
+//app.listen(port,()=> {
+//    console.log('La aplicación esta escuchando al puerto:',port);
+//
+//});
