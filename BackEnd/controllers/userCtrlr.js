@@ -1,4 +1,4 @@
-const usuario = require("@faker-js/faker");
+const usuario = require('../src/userService');
 
 exports.usuario_create = async(req,res) => {
     try {

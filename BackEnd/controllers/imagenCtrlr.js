@@ -1,5 +1,5 @@
 const Imagen = require('@faker-js/faker');
-const { Storage } = require("@google-cloud/storage");
+//const { Storage } = require('@google-cloud/storage');
 
 const storage = new Storage({
     projectId: process.env.GCLOUD_PROJECT_ID,
