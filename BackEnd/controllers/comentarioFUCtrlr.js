@@ -1,4 +1,4 @@
-const ComentarioFU = require('@faker-js/faker');
+const ComentarioFU = require("../models/comentarioFUSchema");
 
 exports.comentarioFU_create = async (req, res) => {
   try {

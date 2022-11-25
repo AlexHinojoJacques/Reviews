@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const usuario_controller = require('../controllers/userCtrlr.js');
+const usuario_controller = require('../controllers/userCtrlr');
 
 router.post("/usuario", usuario_controller.usuario_create);
 router.put("/usuario/:usuarioId", usuario_controller.usuario_update);

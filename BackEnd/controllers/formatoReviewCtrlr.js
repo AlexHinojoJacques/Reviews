@@ -1,21 +1,22 @@
-const FormatoReview = require('@faker-js/faker');
+const FormatoReview = require("../models/formatoreviewSchema");
 
 exports.formato_review_create = async (req, res) => {
   try {
     const { body } = req;
-    let FormatoReview = new FormatoReview(body);
-    await FormatoReview
-      //.save()
+
+    let newFormatoReview = new FormatoReview(body);
+    await newFormatoReview
+      .save()
       .then((newObject) => {
         console.log("Success!", newObject);
         res.send(newObject);
       })
       .catch((err) => {
         console.error("Error!", err);
-        res.send({ message: "No se creo la review " });
+        res.send({ message: "No se creo la adopcion " });
       });
   } catch (err) {
-    res.send({ message: "No se creo la review " });
+    res.send({ message: "No se creo la adopcion " });
   }
 };
 
@@ -107,10 +108,10 @@ exports.formato_review_getAll = async (req, res) => {
     if (data) {
       res.send(data);
     } else {
-      res.send({ message: "No hay solicitudes de reviews." });
+      res.send({ message: "No hay solicitudes de adopciones." });
     }
   } catch (err) {
-    res.send({ message: "No hay solicitudes de reviews." });
+    res.send({ message: "No hay solicitudes de adopciones." });
   }
 };
 
@@ -128,6 +129,6 @@ exports.formato_review_getAllAdoptedByUser = async (req, res) => {
     }
   }
   catch (err) {
-    res.send({ message: "No hay solicitudes de reviews." });
+    res.send({ message: "No hay solicitudes de adopciones." });
   }
 };

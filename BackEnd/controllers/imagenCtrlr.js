@@ -1,5 +1,5 @@
-const Imagen = require('@faker-js/faker');
-//const { Storage } = require('@google-cloud/storage');
+const Imagen = require('../models/imagenSchema');
+const { Storage } = require("@google-cloud/storage");
 
 const storage = new Storage({
     projectId: process.env.GCLOUD_PROJECT_ID,
@@ -8,10 +8,7 @@ const storage = new Storage({
 
 exports.imagen_create = async (req, res) => {
     try {
-        const { body } = [];
-        body.push({
-            archivo: Imagen.image.imageUrl()
-        });
+        const { body, file } = req;
     
         if (!file) {
             res.status(400).send({ code: "400", message: "Archivo no cargado." });
@@ -51,10 +48,7 @@ exports.imagen_create = async (req, res) => {
 
 exports.imagen_update = async (req, res) => {
     const { id } = req.params;
-    const { body } = [];
-        body.push({
-            archivo: Imagen.image.imageUrl()
-        });
+    const { body } = req;
 
     const imagendb = await Imagen.findById(id);
 

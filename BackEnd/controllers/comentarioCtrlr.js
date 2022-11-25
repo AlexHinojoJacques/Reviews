@@ -1,11 +1,11 @@
-const Comentario = require("@faker-js/faker");
+const Comentario = require("../models/comentarioSchema");
 
 exports.comentario_create = async (req, res) => {
   try {
     const { body } = req;
     let newComentario = new Comentario(body);
     await newComentario
-      //.save()
+      .save()
       .then((newObject) => {
         console.log("Success!", newObject);
         res.send(newObject);

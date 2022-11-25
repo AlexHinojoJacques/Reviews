@@ -1,4 +1,4 @@
-const Like = require('@faker-js/faker');
+const Like = require("../models/likeSchema");
 
 exports.like_getAll = async (req, res) => {
   const { id } = req.params;

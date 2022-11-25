@@ -1,12 +1,11 @@
-const Follow = require('@faker-js/faker');
+const FollowUp = require('../models/followSchema');
 
 exports.follow_up_create = async (req, res) => {
     try {
         const { body } = req;
-
-        let newFollow = new Follow(body);
+        let newFollowUp = new FollowUp(body);
     
-        await newFollow.save()
+        await newFollowUp.save()
         .then((newObject) => {
             console.log("Success!", newObject);
             res.send(newObject);
@@ -25,10 +24,10 @@ exports.follow_up_update = async (req, res) => {
     const { id } = req.params;
     const { body } = req;
 
-    const follow_updb = await Follow.findById(id);
+    const follow_updb = await FollowUp.findById(id);
 
     if (follow_updb) {
-        const data = await Follow.findOneAndUpdate( {_id: id}, body, { returnOriginal: false });
+        const data = await FollowUp.findOneAndUpdate( {_id: id}, body, { returnOriginal: false });
         res.send({ message: "El post se actualizado exitosamente" });
     }
     else {
@@ -39,11 +38,11 @@ exports.follow_up_update = async (req, res) => {
 exports.follow_up_delete = async (req, res) => {
     const { id } = req.params;
 
-    const follow_updb = await Follow.findById(id);
+    const follow_updb = await FollowUp.findById(id);
 
     if (follow_updb) {
         // Delete
-        await Follow.findOneAndUpdate({ _id: id }, { isActive: false });
+        await FollowUp.findOneAndUpdate({ _id: id }, { isActive: false });
         res.send({ message: "Post eliminado exitosamente" });
     }
     else {
@@ -54,9 +53,9 @@ exports.follow_up_delete = async (req, res) => {
 
 exports.follow_up_getById = async (req, res) => {
     try {
-        const { followId } = req.params;
+        const { followUpId } = req.params;
     
-        const data = await Follow.findOne({ _id: followId, isActive: true })
+        const data = await FollowUp.findOne({ _id: followUpId, isActive: true })
         .sort({ _id: -1 })
         .populate([
             {
@@ -96,7 +95,7 @@ exports.follow_up_getById = async (req, res) => {
 
 exports.follow_up_getAll = async (req, res) => {
     try {
-        const data = await Follow.find({ isActive: true })
+        const data = await FollowUp.find({ isActive: true })
         .sort({ _id: -1 })
         .populate([
             {
@@ -132,7 +131,7 @@ exports.follow_up_getAll = async (req, res) => {
 
 exports.follow_up_getAllUser = async (req, res) => {
     const { id } = req.params;
-    const data = await Follow.find({ isActive: true, _usuario: id })
+    const data = await FollowUp.find({ isActive: true, _usuario: id })
 
     res.send(data);
 };

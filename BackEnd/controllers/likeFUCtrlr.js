@@ -1,4 +1,4 @@
-const LikeFU = require('@faker-js/faker');
+const LikeFU = require('../models/likeFUSchema');
 
 exports.likeFU_upsert = async (req, res) => {
     try {

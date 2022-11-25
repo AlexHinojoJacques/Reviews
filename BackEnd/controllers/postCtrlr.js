@@ -1,4 +1,4 @@
-const Post = require('@faker-js/faker');
+const Post = require("../models/postSchema");
 
 exports.post_create = async (req, res) => {
   try {
