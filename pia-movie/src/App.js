@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Fragment } from 'react';
-import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
@@ -22,7 +21,7 @@ function App() {
           <Route exact path="/signup" element={<SignUpPage />} />
           <Route exact path="/catalogo" element={<Catalogo />} />
           <Route exact path='/movie/:movieId' element={<MovieDetails/>}/>
-          <Route exact path="/perfil" element={<PerfilPage />} />
+          <Route exact path="/perfil/:usuarioId" element={<PerfilPage />} />
           <Route exact path="/rese" element={<Rese />} />
           <Route exact path="/new-peli" element={<NewPeli />} />
           

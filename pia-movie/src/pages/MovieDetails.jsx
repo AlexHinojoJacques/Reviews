@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Avatar, Button, Grid, Paper, TextField, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { get } from '../utils/httpClient';
 import styles from "./MovieDetails.module.css";
@@ -9,6 +10,27 @@ export function MovieDetails() {
     const { movieId } = useParams();
     const [isLoading, setIsLoading] = useState(true);
     const [movie, setMovie] = useState(null);
+    const paperStyle = {padding: '30px 20px', width:800, margin:"30px auto"}
+    const headerStyle = {margin: 0}
+    
+    const btnStyle = {margin:'20px 0', backgroundColor: '#0B114A'}
+
+    const [usuario, setUser] = useState({
+        user: "",
+        movie: "",
+        reviewText: ""
+    });
+    const handleOnChangeInput = (e) => {
+        const { value, name } = e.target;
+    
+        setUser({
+          ...usuario,
+          [name]: value,
+        });
+    };
+    const handleSubmit = async (e) => {
+        console.log(usuario.reviewText);
+    };
 
     useEffect(() => {
         setIsLoading(true);
@@ -41,7 +63,22 @@ export function MovieDetails() {
                         <strong>Description:</strong> {movie.overview}
                     </p>
                 </div>
+                
             </div>
+
+            <form >
+            <Grid>
+            <Paper elevation={20} style={paperStyle}>
+                <Grid align='center'>
+                    <h1 style={headerStyle}>Write your review</h1>
+                </Grid>
+                <form onSubmit={handleSubmit}>
+                    <TextField fullWidth name="name" margin="dense" label="Review" placeholder='Enter your review' value={usuario.reviewText} onChange={handleOnChangeInput}/>
+                    <Button type="submit" style={btnStyle} size="large" variant="contained" fullWidth>Comment</Button>
+                </form>
+            </Paper>
+        </Grid>
+            </form>
         </div>
     );
 }
